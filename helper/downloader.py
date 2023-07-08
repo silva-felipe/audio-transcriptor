@@ -8,7 +8,7 @@ class Downloader:
         youtube_object = YouTube(self.link)
         youtube_object = youtube_object.streams.get_highest_resolution()
         try:
-            youtube_object.download()
+            youtube_object.download(output_path="../downloads/")
             print("Download is completed successfully")
         except:
             
@@ -18,7 +18,3 @@ class Downloader:
         title = title.replace("\"", "").replace("?","")
 
         return title
-
-# link = input("Enter the YouTube video URL: ")
-# downloader = Downloader(link)
-# downloader.download_video()
