@@ -7,3 +7,5 @@ share/
 *.cfg
 *.mp3
 *.mp4
+helper/__pycache__/
+helper/__pycache__/*.pyc
