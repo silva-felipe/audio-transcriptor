@@ -1,0 +1,9 @@
+.env
+bin/
+etc/
+lib/
+include/
+share/
+*.cfg
+*.mp3
+*.mp4
