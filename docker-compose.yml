@@ -1,0 +1,9 @@
+version: '3.11'
+
+services:
+  app:
+    build: .
+    image: streamlit-transcriptor:latest
+    ports:
+      - '8501:8501'
+    command: ["streamlit", "run", "streamlit_transcriptor.py"]
