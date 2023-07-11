@@ -4,12 +4,9 @@ FROM python:3.11-bullseye
 # Set the working directory to /app
 WORKDIR /app
 
-# Create a directory called "my_directory"
-# RUN mkdir /app/tmp
-
-# Install Node.js and Git
+# Install Node.js, Git, FFmpeg, and nano
 RUN apt-get update && \
-    apt-get install -y curl git build-essential && \
+    apt-get install -y curl git build-essential ffmpeg nano && \
     curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y nodejs && \
     rm -rf /var/lib/apt/lists/*
@@ -27,4 +24,4 @@ COPY ./helper/cipher.py /usr/local/lib/python3.11/site-packages/pytube/cipher.py
 EXPOSE 8501
 
 # Run app.py when the container launches
-CMD ["stremalit", "run", "streamlit_transcriptor.py"]
+CMD ["streamlit", "run", "streamlit_transcriptor.py"]

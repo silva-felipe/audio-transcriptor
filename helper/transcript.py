@@ -16,7 +16,7 @@ def split_audio(filename, chunk_length_ms=120000):  # default chunk length is 60
 
 @st.cache_data
 def transcript(filename):
-    base_filename = os.path.basename(filename).replace('.mp4', '')
+    base_filename, _ = os.path.splitext(os.path.basename(filename))
     chunks = split_audio(filename)
     transcripts = []
     for i, chunk in enumerate(chunks):
