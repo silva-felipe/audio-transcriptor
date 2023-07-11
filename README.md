@@ -16,6 +16,13 @@ This app is intended to transcript the audio of a video either from an youtube v
 ## substitute the script cipher.py from helper directory to the lib pytube
 ```cp -r helper/cipher.py lib/pytube```
 
+### ***or substitute the following lines***
+
+new line 272: `r'a\.[a-zA-Z]\s*&&\s*\([a-z]\s*=\s*a\.get\("n"\)\)\s*&&.*?\|\|\s*([a-z]+)',`
+
+new line 273: `r'\([a-z]\s*=\s*([a-zA-Z0-9$]+)(\[\d+\])?\([a-z]\)',`
+
+
 ## run the app
 ```streamlit run streamlit_transcriptor.py```
 
