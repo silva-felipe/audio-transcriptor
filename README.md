@@ -49,3 +49,12 @@ new line 273: `r'\([a-z]\s*=\s*([a-zA-Z0-9$]+)(\[\d+\])?\([a-z]\)',`
 ## run the image in detached mode
 ```docker run -d -p 8501:8501 streamlit-transcriptor```
 
+# Deploy on GCP
+- Connect to the Google Cloud SDK: Ensure that you have installed and configured the Google Cloud SDK on your computer. If you haven't already done so, follow the instructions provided by Google to install the SDK for your operating system. Once installed, connect to your Vitalwork project using the command:
+
+    - run: ```gcloud auth login``` 
+
+- Navigate to the directory: Navigate to the directory where the dashboard streamlit project is located. Ensure that you are in the root directory of the project.
+    - run: ```gcloud builds submit . --tag gcr.io/audio-transcriptor-392502/audio-trancriptor```
+
+    - run: ```gcloud run deploy --image gcr.io/audio-transcriptor-392502/audio-trancriptor --platform managed --port 8501 --region us-central1 --allow-unauthenticated```
