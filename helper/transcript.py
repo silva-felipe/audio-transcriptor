@@ -1,11 +1,30 @@
 import os
 from dotenv import load_dotenv
 import openai
+from google.cloud import secretmanager
 from pydub import AudioSegment
 import streamlit as st
 
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# load_dotenv()
+# openai.api_key = os.getenv("OPENAI_API_KEY")
+
+# Specify the directory you want to ensure exists
+directory = '../transcripts'
+
+# Create the directory if it doesn't exist
+os.makedirs(directory, exist_ok=True)
+
+def access_secret_version(project_id, secret_id, version_id):
+    """
+    Access the payload of a given secret version.
+    """
+    client = secretmanager.SecretManagerServiceClient()
+    name = f"projects/{project_id}/secrets/{secret_id}/versions/{version_id}"
+    response = client.access_secret_version(request={"name": name})
+    return response.payload.data.decode('UTF-8')
+
+# Use the function
+openai.api_key = access_secret_version("audio-transcriptor-392502", "OPENAI_API_KEY", "latest")
 
 def split_audio(filename, chunk_length_ms=120000):  # default chunk length is 60 seconds
     audio = AudioSegment.from_file(filename)

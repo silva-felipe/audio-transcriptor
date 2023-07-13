@@ -20,6 +20,11 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 # Copy the modified authenticate.py file
 COPY ./helper/cipher.py /usr/local/lib/python3.11/site-packages/pytube/cipher.py
 
+# create transcripts and download directory
+RUN mkdir ./transcripts
+
+RUN mkdir ./downloads
+
 # Make port 8501 available to the world outside this container
 EXPOSE 8501
 

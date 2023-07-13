@@ -55,6 +55,6 @@ new line 273: `r'\([a-z]\s*=\s*([a-zA-Z0-9$]+)(\[\d+\])?\([a-z]\)',`
     - run: ```gcloud auth login``` 
 
 - Navigate to the directory: Navigate to the directory where the dashboard streamlit project is located. Ensure that you are in the root directory of the project.
-    - run: ```gcloud builds submit . --tag gcr.io/audio-transcriptor-392502/audio-trancriptor```
+    - run: ```gcloud builds submit . --tag gcr.io/audio-transcriptor-392502/audio-transcriptor```
 
-    - run: ```gcloud run deploy --image gcr.io/audio-transcriptor-392502/audio-trancriptor --platform managed --port 8501 --region us-central1 --allow-unauthenticated```
+    - run: ```gcloud run deploy --image gcr.io/audio-transcriptor-392502/audio-transcriptor --platform managed --port 8501 --region us-central1 --allow-unauthenticated```

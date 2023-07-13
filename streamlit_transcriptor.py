@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+import logging
 from helper.downloader import Downloader
 from helper.transcript import transcript
 
@@ -38,29 +39,29 @@ def main():
         st.warning("Please enter a YouTube video URL or upload a file")
     elif url != "":
         video_title = Downloader(url).download_video()
-        transcript_text = transcript(f"downloads/{video_title}.mp4")
+        transcript_text = transcript(f"./downloads/{video_title}.mp4")
         file_name = video_title
         file_extension = ".mp4"
     elif uploaded_file is not None:  # uploaded_file is not None
         # Save the uploaded file to the downloads directory
-        with open(f"downloads/{uploaded_file.name}", "wb") as f:
+        with open(f"./downloads/{uploaded_file.name}", "wb") as f:
             f.write(uploaded_file.getbuffer())
-        transcript_text = transcript(f"downloads/{uploaded_file.name}")
+        transcript_text = transcript(f"./downloads/{uploaded_file.name}")
         file_name, file_extension = os.path.splitext(uploaded_file.name)
 
     st.write(transcript_text)
 
     # Add download buttons for the video and the transcript
     if file_name != "":
-        with open(f"downloads/{file_name}{file_extension}", "rb") as f:
+        with open(f"./downloads/{file_name}{file_extension}", "rb") as f:
             st.download_button(
                 label="Download File",
                 data=f.read(),
                 file_name=f"{file_name}{file_extension}",
                 mime="application/octet-stream",
             )
-        if os.path.exists(f"transcripts/{file_name}.txt"):
-            with open(f"transcripts/{file_name}.txt", "r") as f:
+        if os.path.exists(f"./transcripts/{file_name}.txt"):
+            with open(f"./transcripts/{file_name}.txt", "r") as f:
                 st.download_button(
                     label="Download Transcript",
                     data=f.read(),

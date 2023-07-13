@@ -1,6 +1,13 @@
 from pytube import YouTube
 import streamlit as st
 import re
+import os
+
+# Specify the directory you want to ensure exists
+directory = './downloads'
+
+# Create the directory if it doesn't exist
+os.makedirs(directory, exist_ok=True)
 
 class Downloader:
     def __init__(_self, link):
@@ -21,6 +28,6 @@ class Downloader:
 
 
         title = youtube_object.title
-        title = re.sub(r'[\\/*?:"<>|,]', "", title)  # remove any characters that are not valid in filenames
+        title = re.sub(r'[\\/*?:!"<>|,]', "", title)  # remove any characters that are not valid in filenames
 
         return title
